@@ -17,9 +17,9 @@ const AbonementPage = () => {
   const { lesson, errorMessage } = useSelector(state => state.lesson);
   const preparedDate = date => date.split('T')[0].split('-').reverse().slice(0, 2).join('.');
   const calculatePrice = (price, amount) => {
-    if (amount > 11) return Math.round(((price * amount) * 8) / 10);
-    if ((amount > 7) && (amount < 12)) return Math.round(((price * amount) * 85) / 100);
-    if ((amount > 3) && (amount < 8)) return Math.round(((price * amount) * 9) / 10);
+    if (amount > 11) return Math.ceil(((price * amount) * 8) / 10);
+    if ((amount > 7) && (amount < 12)) return Math.ceil(((price * amount) * 85) / 100);
+    if ((amount > 3) && (amount < 8)) return Math.ceil(((price * amount) * 9) / 10);
   };
   const handlePay = () => {
     console.log(id, amount);
@@ -126,7 +126,7 @@ const AbonementPage = () => {
                     ₽
                   </Typography>
                   <Typography color="primary" fontSize="32px" fontWeight="700">
-                    {((lesson.data.price * 4) * 9) / 10}
+                    {Math.ceil(((lesson.data.price * 4) * 9) / 10)}
                     {' '}
                     ₽
                   </Typography>
@@ -159,7 +159,7 @@ const AbonementPage = () => {
                     ₽
                   </Typography>
                   <Typography color="primary" fontSize="32px" fontWeight="700">
-                    {((lesson.data.price * 8) * 85) / 100}
+                    {Math.ceil(((lesson.data.price * 8) * 85) / 100)}
                     {' '}
                     ₽
                   </Typography>
@@ -202,7 +202,7 @@ const AbonementPage = () => {
                 {amount > 3 && (
                   <Stack direction="column" alignItems="center" justifyContent="center">
                     <Typography color="text.secondary" fontSize="24px" fontWeight="400" sx={{ textDecoration: 'line-through' }}>
-                      {lesson.data.price * amount}
+                      {Math.ceil(lesson.data.price * amount)}
                       {' '}
                       ₽
                     </Typography>
